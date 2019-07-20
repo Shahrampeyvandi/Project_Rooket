@@ -12,5 +12,8 @@
     <link rel="stylesheet" href="/css/sweetalert.css">
 </head>
 <body>
-<h3>{{auth()->user()->name}}</h3>
+    @auth
+    <h3>{{auth()->user()->name}}</h3>
+
+    @endauth
 
