@@ -55,7 +55,14 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                        <div class="g-recaptcha" data-sitekey="6LeJpq4UAAAAACVi168fF8XAYsXMmGXMnRArsetT" data-callback='onSubmit'></div>
+                                </div>
+                            </div>
+                       
+                                
+                            
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <a href="{{ url('login/google') }}" class="btn btn-danger">Login With Google</a>

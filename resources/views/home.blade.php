@@ -1,28 +1,24 @@
-<!doctype html>
-<html lang="{{ config('app.locale') }}">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{-- <script src="http://demo.itsolutionstuff.com/plugin/jquery.js"></script> --}}
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    
-    {{-- <link rel="stylesheet" href="/css/sweetalert.css"> --}}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+      function onSubmit(token) {
+        document.getElementById("demo-form").submit();
+      }
+    </script>
 </head>
 <body>
-    @auth
-    <h3>{{auth()->user()->name}}</h3>
-
-    @endauth
-{{-- <script src="js/sweetalert.min.js"></script> --}}
-
-    @include('sweet::alert')
+        <form id='demo-form' action="getdata" method="POST">
+            @csrf
+            <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                <div class="g-recaptcha" data-sitekey="6LeJpq4UAAAAACVi168fF8XAYsXMmGXMnRArsetT" data-callback='onSubmit'>Submit</div>
+                <br/>
+                <button type="submit">ارسال</button>
+              </form>
 </body>
 </html>
-

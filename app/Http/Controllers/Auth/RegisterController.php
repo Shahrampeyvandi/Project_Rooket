@@ -86,8 +86,8 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
         event(new UserActivation($user));
-
-        return $this->registered($request, $user)
+    alert()->success('متن','ایمیل حاوی لینک تایید حساب شما ارسال شد')->autoclose(3500);
+return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
     }
 }

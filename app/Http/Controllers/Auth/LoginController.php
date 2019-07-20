@@ -67,7 +67,7 @@ class LoginController extends Controller
             if($user->active == 0 ) {
                 $checkActiveCode = $user->activationCode()->where('expire' , '>=' , Carbon::now() )->latest()->first();
 
-                if(count($checkActiveCode) == 1) {
+                if($checkActiveCode) {
                     if($checkActiveCode->expire > Carbon::now() ) {
                         $this->incrementLoginAttempts($request);
                         return back()->withErrors(['code' => 'ایمیل فعال سازی قبلا به ایمیل شما ارسال شد بعد از 15 دقیقه دوباره برای ارسال ایمیل لاگین کنید']);
@@ -123,5 +123,16 @@ class LoginController extends Controller
         auth()->loginUsingId($user->id);
         alert()->success('شما با موفقیت وارد شدید');
         return redirect('/');
+    }
+
+    //------- custom validate Login -------------//
+    
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required',
+             'password' => 'required',
+             'g-recaptcha-response' => 'recaptcha'
+        ]);
     }
 }

@@ -60,7 +60,16 @@ Route::group(['namespace' => 'Auth'] , function (){
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('register', function(){
-    alert()->success('متن','عنوان')->autoclose(3500);
-    return redirect('/');
+// Route::get('register', function(){
+//     alert()->success('متن','عنوان')->autoclose(3500);
+//     return redirect('/');
+// });
+Route::post('getdata',function(){
+$data=\Validator::make(request()->all(),[
+       'g-recaptcha-response' => 'recaptcha'
+]);
+if($data->fails()){
+    return 'null';
+}
+return request('message');
 });

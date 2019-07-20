@@ -49,4 +49,8 @@ return [
         'redirect' => 'http://localhost:8000/login/google/callback',
     ],
 
+    'recaptcha' =>[
+        'secret' => '6LeJpq4UAAAAAIGjHE5zP6SHiKCPLEz-19MPkB54',
+    ],
+
 ];
