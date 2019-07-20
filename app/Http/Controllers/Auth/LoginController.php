@@ -121,6 +121,7 @@ class LoginController extends Controller
         }
 
         auth()->loginUsingId($user->id);
+        alert()->success('شما با موفقیت وارد شدید');
         return redirect('/');
     }
 }

@@ -60,3 +60,7 @@ Route::group(['namespace' => 'Auth'] , function (){
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('register', function(){
+    alert()->success('متن','عنوان')->autoclose(3500);
+    return redirect('/');
+});
