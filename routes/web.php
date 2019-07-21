@@ -20,7 +20,7 @@ Route::get('/' , function (){
 Route::get('/user/active/email/{token}' , 'UserController@activation')->name('activation.account');
 
 // namespace('Admin')->prefix('admin')
-Route::group(['namespace' => 'Admin' , 'prefix' => 'admin','middleware' => 'admin'],function (){
+Route::group(['namespace' => 'Admin' , 'prefix' => 'admin','middleware' =>['admin','auth:web'] ],function (){
     Route::get('/panel' , 'PanelController@index');
     Route::post('/panel/upload-image' , 'PanelController@uploadImageSubject');
     Route::resource('articles' , 'ArticleController');
@@ -64,12 +64,21 @@ Route::get('/home', 'HomeController@index')->name('home');
 //     alert()->success('متن','عنوان')->autoclose(3500);
 //     return redirect('/');
 // });
-Route::post('getdata',function(){
-$data=\Validator::make(request()->all(),[
-       'g-recaptcha-response' => 'recaptcha'
-]);
-if($data->fails()){
-    return 'null';
-}
-return request('message');
-});
+// Route::post('getdata',function(){
+// $data=\Validator::make(request()->all(),[
+//        'name' => 'required',
+//        'pic' =>'required'
+// ]);
+// if($data->fails()){
+//     return $data->errors()->all();
+// }
+
+// $year=\Carbon\Carbon::now()->year;
+// $image_path="upload/images/{$year}/";
+// $file=$data->file('pic');
+// $fileName=$file->getClientOriginalName();
+// $file->move(public_path($image_path),$fileName);
+// return $image_path . $fileName;
+
+
+// });

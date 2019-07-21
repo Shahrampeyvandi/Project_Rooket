@@ -144,6 +144,7 @@ return array(
         'fileUrl' => 'آدرس فایل',
         'enSlug' => 'نامک انگلیسی',
         'percent' => 'درصد',
-        'images' => 'تصویر'
+        'images' => 'تصویر',
+        'comment' =>'نظر'
     ),
 );
