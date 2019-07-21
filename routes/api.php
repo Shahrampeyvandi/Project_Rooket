@@ -19,4 +19,11 @@ use Illuminate\Http\Request;
 Route::group(['prefix' => 'v1','namespace'=>'Api\v1'],function(){
          Route::get('articles','ArticleController@articles');
          Route::post('comments','ArticleController@storeComment');
+         Route::post('loginUser', 'UserController@login');
+         
+         Route::group(['middleware'=>'auth:api'],function(){
+           Route::get('/user',function(Request $request){
+             return $request->user();
+           });
+         });
 });
