@@ -15,7 +15,7 @@
 
 Route::get('/' , function (){
 //    event(new \App\Events\UserActivation(\App\User::find(1)));
-    return view('home');
+    return view('Home.index');
 });
 Route::get('/user/active/email/{token}' , 'UserController@activation')->name('activation.account');
 
