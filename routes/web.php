@@ -17,6 +17,8 @@ Route::get('/' ,'HomeController@index');
 
 Route::get('articles','ArticleController@index');
 Route::get('courses','CourseController@index');
+Route::get('articles/{articleSlug}','ArticleController@single');
+Route::get('courses/{courseSlug}','CourseController@single');
 
 
 Route::get('/user/active/email/{token}' , 'UserController@activation')->name('activation.account');
