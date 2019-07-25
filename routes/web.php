@@ -13,10 +13,12 @@
 // roocket.ir/admin
 
 
-Route::get('/' , function (){
-//    event(new \App\Events\UserActivation(\App\User::find(1)));
-    return view('Home.index');
-});
+Route::get('/' ,'HomeController@index');
+
+Route::get('articles','ArticleController@index');
+Route::get('courses','CourseController@index');
+
+
 Route::get('/user/active/email/{token}' , 'UserController@activation')->name('activation.account');
 
 // namespace('Admin')->prefix('admin')
