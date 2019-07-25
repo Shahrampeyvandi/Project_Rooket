@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Course;
 use Carbon\Carbon;
+use SEO;
 class HomeController extends Controller
 {
 
     public function index()
     {
+        SEO::setTitle('Home');
+        SEO::setDescription('This is my page description');
 
         // use cache
         if(cache()->has('articles')){
