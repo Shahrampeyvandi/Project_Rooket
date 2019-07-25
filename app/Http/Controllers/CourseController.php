@@ -8,6 +8,9 @@ class CourseController extends Controller
 {
     public function single(Course $course)
     {
-        dd(response(['courses'=>$course]) );
+
+       $course->update(['viewCount'=> $course->viewCount+1]);
+       dd($course);
+
     }
 }
