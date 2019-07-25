@@ -9,8 +9,11 @@ class CourseController extends Controller
     public function single(Course $course)
     {
 
-       $course->update(['viewCount'=> $course->viewCount+1]);
-       dd($course);
+       $course->increment('viewCount');
+
+       return view('Home.courses' , compact('course'));
+
+
 
     }
 }

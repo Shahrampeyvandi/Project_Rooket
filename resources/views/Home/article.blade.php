@@ -66,16 +66,28 @@
             <!-- Blog Comments -->
 
             <!-- Comments Form -->
+            @if(auth()->check())
             <div class="well">
+               @include('Home.errors')
                 <h4>ثبت نظر :</h4>
-                <form role="form">
+                <form role="form" action="/comment" method="post">
+                    @csrf
                     <div class="form-group">
-                        <textarea class="form-control" rows="3"></textarea>
+                        <input type="hidden" name="parent_id" value="0">
+                        <input type="hidden" name="commentable_id" value="{{$article->id}}">
+                        <input type="hidden" name="commentable_type" value="{{get_class($article)}}">
+
+                        <textarea class="form-control" rows="3" name="comment"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">ارسال</button>
                 </form>
             </div>
 
+            @else
+                <div class="alert alert-danger">
+                    برای مشاهده نظرات باید ثبت نام کنید
+                </div>
+            @endif
             <hr>
 
             <!-- Posted Comments -->
@@ -156,11 +168,12 @@
                     <h4 class="modal-title" id="exampleModalLabel">ارسال پاسخ</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post">
+                    <form action="comment" method="post">
+                        @csrf
                         <input type="hidden" name="parent_id" value="0">
                         <div class="form-group">
                             <label for="message-text" class="control-label">متن پاسخ:</label>
-                            <textarea class="form-control" id="message-text"></textarea>
+                            <textarea class="form-control" id="message-text" name="comment"></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">ارسال</button>

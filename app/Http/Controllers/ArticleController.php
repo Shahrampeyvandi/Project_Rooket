@@ -8,6 +8,9 @@ class ArticleController extends Controller
 {
     public function single(Article $article)
     {
-        return $article;
+        $article->increment('viewCount');
+
+        return view('Home.article' , compact('article'));
+
     }
 }

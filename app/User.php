@@ -46,4 +46,8 @@ class User extends Authenticatable
     {
         return $this->level == 'admin' ? true : false;
     }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
