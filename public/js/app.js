@@ -49218,6 +49218,18 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
+$(document).ready(function () {
+  $('.answer').on('click', function () {
+    $('html, body').animate({
+      scrollTop: $('.well').offset().top
+    }, 100);
+    $('#myform textarea').focus();
+    var id = $(this).attr('data-id');
+    console.log(id); // $('.textarea').focus();
+
+    $('#myform').find("[name='parent_id']").attr('value', id);
+  });
+});
 
 /***/ }),
 

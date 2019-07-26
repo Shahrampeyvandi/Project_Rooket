@@ -91,60 +91,76 @@
         <!-- Blog Comments -->
 
         <!-- Comments Form -->
-        <div class="well">
-            <h4>ثبت نظر :</h4>
-            <form role="form">
-                <div class="form-group">
-                    <textarea class="form-control" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">ارسال</button>
-            </form>
-        </div>
+        @if(auth()->check())
+            <div class="well parent-form">
+                @include('Home.errors')
+                <h4>ثبت نظر :</h4>
+                <form id="myform" role="form" action="/comment" method="post">
+                    @csrf
+                    <div class="form-group">
+                        <input type="hidden" name="parent_id" value="0">
+                        <input type="hidden" name="commentable_id" value="{{$course->id}}">
+                        <input type="hidden" name="commentable_type" value="{{get_class($course)}}">
 
+                        <textarea class="textarea form-control" rows="3" name="comment"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">ارسال</button>
+                </form>
+            </div>
+
+        @else
+            <div class="alert alert-danger">
+                برای مشاهده نظرات باید ثبت نام کنید
+            </div>
+        @endif
         <hr>
 
         <!-- Posted Comments -->
 
         <!-- Comment -->
-        <div class="media">
-            <a class="pull-right" href="#">
-                <img class="media-object" src="http://placehold.it/64x64" alt="">
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">حسام موسوی
-                    <small>۱۰ روز قبل</small>
-                    <button class="pull-left btn btn-xs btn-success" data-toggle="modal" data-target="#sendCommentModal" data-parent="21">پاسخ</button>
-                </h4>
-                معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند که صفحه طراحی یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته شده‌است.
-            </div>
-        </div>
+        @foreach($comments as $comment)
+            <div class="media">
+                <a class="pull-right" href="#">
+                    <img class="media-object" src="http://placehold.it/64x64" alt="">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        <small>  {{jdate($comment->created_at)->ago()}}</small>
 
-        <!-- Comment -->
-        <div class="media">
-            <a class="pull-right" href="#">
-                <img class="media-object" src="http://placehold.it/64x64" alt="">
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">حسام موسوی
-                    <small>۱۰ روز قبل</small>
-                    <button class="pull-left btn btn-xs btn-success" data-toggle="modal" data-target="#sendCommentModal" data-parent="21">پاسخ</button>
-                </h4>
-                معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند که صفحه طراحی یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته شده‌است.
-                <!-- Nested Comment -->
-                <div class="media">
-                    <a class="pull-right" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">حسام موسوی
-                            <small>۱۰ روز قبل</small>
-                        </h4>
-                        معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند که صفحه طراحی یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته شده‌است.
-                    </div>
+                        <button data-id="{{$comment->id}}" type="button" class="answer btn btn-xs btn-primary">پاسخ</button>
+                        {{$comment->user->name}}
+                    </h4>
+
+                    {{$comment->comment}}
+
+                    {{-- nested comments  --}}
+
+                    @if(count($comment->comments))
+
+                        @foreach($comment->comments as $childComment)
+
+                            <div class="media">
+                                <a class="pull-right" href="#">
+                                    <img class="media-object" src="http://placehold.it/64x64" alt="">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">
+                                        <small>  {{jdate($childComment->created_at)->ago()}}</small>
+                                        {{$childComment->user->name}}
+                                    </h4>
+                                    {{$childComment->comment}}
+                                </div>
+                            </div>
+
+
+                        @endforeach
+
+
+
+                    @endif
                 </div>
-                <!-- End Nested Comment -->
             </div>
-        </div>
+        @endforeach
 
     </div>
 

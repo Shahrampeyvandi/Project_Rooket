@@ -30,3 +30,19 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+$(document).ready(function () {
+    $('.answer').on('click' ,function () {
+
+        $('html, body').animate({
+            scrollTop:$('.well').offset().top
+        }, 100);
+        $('#myform textarea').focus();
+        let id= $(this).attr('data-id');
+        console.log(id);
+        // $('.textarea').focus();
+        $('#myform').find("[name='parent_id']").attr('value' , id);
+
+
+    });
+});

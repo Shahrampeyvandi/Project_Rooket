@@ -67,17 +67,17 @@
 
             <!-- Comments Form -->
             @if(auth()->check())
-            <div class="well">
+            <div class="well parent-form">
                @include('Home.errors')
                 <h4>ثبت نظر :</h4>
-                <form role="form" action="/comment" method="post">
+                <form id="myform" role="form" action="/comment" method="post">
                     @csrf
                     <div class="form-group">
                         <input type="hidden" name="parent_id" value="0">
                         <input type="hidden" name="commentable_id" value="{{$article->id}}">
                         <input type="hidden" name="commentable_type" value="{{get_class($article)}}">
 
-                        <textarea class="form-control" rows="3" name="comment"></textarea>
+                        <textarea class="textarea form-control" rows="3" name="comment"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">ارسال</button>
                 </form>
@@ -93,45 +93,75 @@
             <!-- Posted Comments -->
 
             <!-- Comment -->
-            <div class="media">
-                <a class="pull-right" href="#">
-                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading">حسام موسوی
-                        <small>۱۰ روز قبل</small>
-                        <button class="pull-left btn btn-xs btn-success" data-toggle="modal" data-target="#sendCommentModal" data-parent="21">پاسخ</button>
-                    </h4>
-                    معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند که صفحه طراحی یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته شده‌است.
+           @foreach($comments as $comment)
+                <div class="media">
+                    <a class="pull-right" href="#">
+                        <img class="media-object" src="http://placehold.it/64x64" alt="">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <small>  {{jdate($comment->created_at)->ago()}}</small>
+
+                            <button data-id="{{$comment->id}}" type="button" class="answer btn btn-xs btn-primary">پاسخ</button>
+                            {{$comment->user->name}}
+                        </h4>
+
+                        {{$comment->comment}}
+
+                        {{-- nested comments  --}}
+
+                        @if(count($comment->comments))
+
+                            @foreach($comment->comments as $childComment)
+
+                                <div class="media">
+                                                            <a class="pull-right" href="#">
+                                                                <img class="media-object" src="http://placehold.it/64x64" alt="">
+                                                            </a>
+                                                            <div class="media-body">
+                                                                <h4 class="media-heading"> {{$childComment->user->name}}
+                                                                    <small>  {{jdate($childComment->created_at)->ago()}}</small>
+                                                                </h4>
+                                                                {{$childComment->comment}}
+                                                            </div>
+                                </div>
+
+
+                                @endforeach
+
+
+
+                        @endif
+                    </div>
                 </div>
-            </div>
+            @endforeach
 
             <!-- Comment -->
-            <div class="media">
-                <a class="pull-right" href="#">
-                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading">حسام موسوی
-                        <small>۱۰ روز قبل</small>
-                        <button class="pull-left btn btn-xs btn-success" data-toggle="modal" data-target="#sendCommentModal" data-parent="21">پاسخ</button>
-                    </h4>
-                    معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند که صفحه طراحی یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته شده‌است.
-                    <!-- Nested Comment -->
-                    <div class="media">
-                        <a class="pull-right" href="#">
-                            <img class="media-object" src="http://placehold.it/64x64" alt="">
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">حسام موسوی
-                                <small>۱۰ روز قبل</small>
-                            </h4>
-                            معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند که صفحه طراحی یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته شده‌است.
-                        </div>
-                    </div>
-                    <!-- End Nested Comment -->
-                </div>
-            </div>
+{{--            <div class="media">--}}
+{{--                <a class="pull-right" href="#">--}}
+{{--                    <img class="media-object" src="http://placehold.it/64x64" alt="">--}}
+{{--                </a>--}}
+{{--                <div class="media-body">--}}
+{{--                    <h4 class="media-heading">حسام موسوی--}}
+{{--                        <small>۱۰ روز قبل</small>--}}
+{{--                        <button class="pull-left btn btn-xs btn-success" data-toggle="modal" data-target="#sendCommentModal" data-parent="21">پاسخ</button>--}}
+{{--                    </h4>--}}
+{{--                    معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند که صفحه طراحی یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته شده‌است.--}}
+{{--                    <!-- Nested Comment -->--}}
+{{--                    <div class="media">--}}
+{{--                        <a class="pull-right" href="#">--}}
+{{--                            <img class="media-object" src="http://placehold.it/64x64" alt="">--}}
+{{--                        </a>--}}
+{{--                        <div class="media-body">--}}
+{{--                            <h4 class="media-heading">حسام موسوی--}}
+{{--                                <small>۱۰ روز قبل</small>--}}
+{{--                            </h4>--}}
+{{--                            معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند که صفحه طراحی یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته شده‌است.--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <!-- End Nested Comment -->--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
         </div>
 
@@ -160,29 +190,5 @@
 
         </div>
 
-    <div class="modal fade" id="sendCommentModal" tabindex="-1" role="dialog" aria-labelledby="sendCommentModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="exampleModalLabel">ارسال پاسخ</h4>
-                </div>
-                <div class="modal-body">
-                    <form action="comment" method="post">
-                        @csrf
-                        <input type="hidden" name="parent_id" value="0">
-                        <div class="form-group">
-                            <label for="message-text" class="control-label">متن پاسخ:</label>
-                            <textarea class="form-control" id="message-text" name="comment"></textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">ارسال</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
-                        </div>
-                    </form>
-                </div>
 
-            </div>
-        </div>
-    </div>
 @endsection

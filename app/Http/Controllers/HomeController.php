@@ -36,8 +36,10 @@ class HomeController extends Controller
 
     public function comment(Request $request)
     {
+
             $request->validate([
-                'comment'=> 'required'
+                'comment'=> 'required | max:1500',
+
             ]);
 
          auth()->user()->comments()->create($request->all());

@@ -14,4 +14,18 @@ class Comment extends Model
         return $this->morphTo();
     }
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class , 'parent_id', 'id')->where('published', 1)->latest();
+    }
+
+    public function setCommentAttribute($value)
+    {
+        return $this->attributes['comment']= str_replace(PHP_EOL, "<br>", $value);
+    }
+
+
 }

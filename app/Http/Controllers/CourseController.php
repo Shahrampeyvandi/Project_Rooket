@@ -10,10 +10,9 @@ class CourseController extends Controller
     {
 
        $course->increment('viewCount');
+       $comments= $course->comments()->where(['published'=>1, 'parent_id'=>0])->latest()->get();
 
-       return view('Home.courses' , compact('course'));
-
-
+       return view('Home.courses' , compact(['course','comments']));
 
     }
 }
