@@ -28,6 +28,7 @@ Route::post('comment', 'HomeController@comment');
 Route::get('/user/active/email/{token}' , 'UserController@activation')->name('activation.account');
 
 // namespace('Admin')->prefix('admin')
+
 Route::group(['namespace' => 'Admin' , 'prefix' => 'admin','middleware' =>['admin','auth:web'] ],function (){
     Route::get('/panel' , 'PanelController@index');
     Route::post('/panel/upload-image' , 'PanelController@uploadImageSubject');
@@ -36,6 +37,9 @@ Route::group(['namespace' => 'Admin' , 'prefix' => 'admin','middleware' =>['admi
     Route::resource('episodes' , 'EpisodeController');
     Route::resource('roles' , 'RoleController');
     Route::resource('permissions' , 'PermissionController');
+    Route::resource('comments' , 'CommentController');
+    Route::get('unpublishedComments', 'CommentController@unPublishedComment');
+
 
     Route::group(['prefix' => 'users'],function (){
        Route::get('/' , 'UserController@index');

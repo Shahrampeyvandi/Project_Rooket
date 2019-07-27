@@ -41,10 +41,10 @@
                 <li><a href="">پرداختی های ناموفق <span class="badge">0</span></a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                @can('show-comment')
-                    <li><a href="">همه نظرات</a></li>
-                    <li><a href="">نظرات تایید نشده <span class="badge">0</span></a></li>
-                @endcan
+{{--                @can('show-comment')--}}
+                    <li><a href="/admin/comments">همه نظرات</a></li>
+                    <li><a href="/admin/unpublishedComments">نظرات تایید نشده <span class="badge">{{$unPublishedCommentCount}}</span></a></li>
+{{--                @endcan--}}
                 {{--<li><a href="">Another nav item</a></li>--}}
             </ul>
         </div>

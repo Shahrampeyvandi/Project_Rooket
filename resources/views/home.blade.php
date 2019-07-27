@@ -10,7 +10,7 @@
             <div class="panel-heading">Dashboard</div>
             <div class="panel-body">
               @auth
-        <h4 class="text-right">        {{auth()->user()->name}} سلام</h4>
+                     <h4 class="text-right">        {{auth()->user()->name}} سلام</h4>
               @endauth
             </div>
           </div>

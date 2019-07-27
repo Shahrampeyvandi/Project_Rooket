@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Comment;
+use function foo\func;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,6 +29,11 @@ class AppServiceProvider extends ServiceProvider
                     $response=json_decode($response->getBody());
                     // dd($response->success);
            return $response->success;
+        });
+// pass variable to view
+        view()->composer('Admin.section.header' , function($view){
+           $unPublishedCommentCount=count( Comment::where('published', 0)->latest()->get());
+           $view->with( 'unPublishedCommentCount' , $unPublishedCommentCount);
         });
     }
 
