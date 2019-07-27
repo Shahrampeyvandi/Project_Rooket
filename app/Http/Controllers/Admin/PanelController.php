@@ -24,6 +24,11 @@ class PanelController extends Controller
         // $values['success'] = $this->CheckCount($paymentSuccess->pluck('published') , $month);
         // $values['unsuccess'] = $this->CheckCount($paymentUnSuccess->pluck('published') , $month);
 
+//        auth()->user()->roles()->sync(1);
+//        $permision= Permission::find(1);
+//        $role= Role::whereName('admin')->first()->permissions()->sync([1,2,3]);
+
+
         return view('Admin.panel' );
     }
 

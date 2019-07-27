@@ -24,7 +24,7 @@ Route::get('courses/{courseSlug}','CourseController@single');
 
 Route::post('comment', 'HomeController@comment');
 
-
+//------------ verify email ----------
 Route::get('/user/active/email/{token}' , 'UserController@activation')->name('activation.account');
 
 // namespace('Admin')->prefix('admin')
@@ -68,7 +68,11 @@ Route::group(['namespace' => 'Auth'] , function (){
     Route::post('password/reset', 'ResetPasswordController@reset');
 });
 
+Route::group(['middleware' => 'auth:web'], function (){
+    Route::post('course/payment', 'CourseController@paymant');
+    Route::get( 'course/payment/checker' , 'CourseController@checkpayment');
 
+});
 
 
 Route::get('/home', 'HomeController@index')->name('home');
