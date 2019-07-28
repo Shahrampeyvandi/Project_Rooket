@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Comment;
+use App\Payment;
 use function foo\func;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -33,7 +34,9 @@ class AppServiceProvider extends ServiceProvider
 // pass variable to view
         view()->composer('Admin.section.header' , function($view){
            $unPublishedCommentCount=count( Comment::where('published', 0)->latest()->get());
-           $view->with( 'unPublishedCommentCount' , $unPublishedCommentCount);
+           $unsuccessfulPayments=count(Payment::wherePayment(0)->latest()->get());
+           $view->with([ 'unPublishedCommentCount' => $unPublishedCommentCount ,
+               'unsuccessfulPayments' => $unsuccessfulPayments]);
         });
     }
 

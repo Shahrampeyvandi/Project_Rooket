@@ -40,6 +40,11 @@ Route::group(['namespace' => 'Admin' , 'prefix' => 'admin','middleware' =>['admi
     Route::resource('comments' , 'CommentController');
     Route::get('unpublishedComments', 'CommentController@unPublishedComment');
 
+    // ---------- payment management -------------
+    Route::get('unsuccessful' , 'paymentController@unSuccessfull');
+
+    Route::resource('payment' , 'paymentController');
+    // ---------- end payment management -------------
 
     Route::group(['prefix' => 'users'],function (){
        Route::get('/' , 'UserController@index');
