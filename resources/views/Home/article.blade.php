@@ -1,6 +1,6 @@
 @extends('Home.master')
 
-
+@section('title' , 'دوره های ویژه')
 @section('content')
         <!-- Blog Post Content Column -->
         <div class="col-lg-8">
@@ -93,7 +93,7 @@
             <!-- Posted Comments -->
 
             <!-- Comment -->
-           @foreach($comments as $comment)
+           @forelse($comments as $comment)
                 <div class="media">
                     <a class="pull-right" href="#">
                         <img class="media-object" src="http://placehold.it/64x64" alt="">
@@ -134,7 +134,11 @@
                         @endif
                     </div>
                 </div>
-            @endforeach
+            @empty
+               <div class="alert alert-info">
+                   <p>نظری برای این پست وجود ندارد</p>
+               </div>
+            @endforelse
 
             <!-- Comment -->
 {{--            <div class="media">--}}

@@ -11,7 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {!! SEO::generate() !!}
 
-    <title>وبسایت راکت</title>
+    <title> @yield('title' , 'صفحه اصلی')</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/css/home.css" rel="stylesheet">

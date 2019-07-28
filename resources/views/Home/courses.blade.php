@@ -166,7 +166,7 @@
 
     <!-- Blog Sidebar Widgets Column -->
 {{--    check for if user buy this course--}}
-    @if(auth()->user()->checkLearning($course))
+    @if(auth()->check() && auth()->user()->checkLearning($course) )
     <div class="col-md-4">
         <div class="well">
          <h4>شما این دوره را خریداری کرده اید</h4>
