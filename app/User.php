@@ -54,4 +54,9 @@ class User extends Authenticatable
     public function payments(){
         return $this->hasMany(Payment::class);
     }
+
+    public function checkLearning($course)
+    {
+        return !! learning::where(['user_id' => $this->id ,'course_id' => $course->id])->first();
+    }
 }

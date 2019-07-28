@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\learning;
 use App\Payment;
 use Illuminate\Http\Request;
 use App\Course;
 class CourseController extends Controller
 {
-    protected $MerchantID = 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'; //Req
+    protected $MerchantID = '00'; //Req
 
     public function single(Course $course)
     {
@@ -21,22 +22,28 @@ class CourseController extends Controller
 
     public function paymant(Request $request)
     {
-        validate($request, [
+        \validator($request->all(), [
             'course_id' => 'required'
         ]);
 
         $course = Course::findOrFail($request->course_id);
+
+        if (auth()->user()->checkLearning($course)){
+            alert()->error('این محصول قبلا توسط شما خریداری شده است    ')->persistent('تایید');
+         return back();
+        }
         if ($course->price == 0 && $course->type == 'vip') {
             alert()->error('این محصول شامل شما نمیشود')->persistent('تایید');
+            return back();
         }
 
         $Price = $course->price;
         $Description = "توضیحات پرداخت";
         $Email = auth()->user()->email;
+        $Mobile= "09999999999";
         $CallbackURL = 'http://www.yoursoteaddress.ir/verify.php'; // Required
 
-        $client = new SoapClient('https://www.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
-
+        $client = new \SoapClient('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
         $result = $client->PaymentRequest(
             [
                 'MerchantID' => $this->MerchantID,
@@ -48,6 +55,7 @@ class CourseController extends Controller
             ]
         );
         if ($result->Status == 100) {
+            //ذخیره اطلاعات قبل از پرداخت
             auth()->user()->payments()->create([
                 'resnumber' => $result->Authority,
                 'course_id' => $course->id,
@@ -55,17 +63,19 @@ class CourseController extends Controller
             ]);
             return redirect("https://www.zarinpal.com/pg/StartPay/.$result->Authority");
         } else {
+            //لیست اررور ها موجود در زرین پال
             echo 'ERR: ' . $result->Status;
         }
     }
 
     public function checkpayment()
     {
-        $Authority = \request('Authority');
+        $Authority = request('Authority');
         $payment = Payment::whereResnumber($Authority)->firstOrFail();
-        if (request('Status') == 'OK') {
-
-            $client = new SoapClient('https://www.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
+        $course= Course::findOrFail($payment->course_id);
+                if (request('Status') == 'OK') {
+//تصدیق اطلاعات وارد شده
+                    $client = new \SoapClient('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
 
             $result = $client->PaymentVerification(
                 [
@@ -75,14 +85,28 @@ class CourseController extends Controller
                 ]
             );
 
-            if ($result->Status == 100) {
-                echo 'Transaction success. RefID:' . $result->RefID;
+            if ($this->addCourseToLearning($payment , $course)) {
+            alert()->success('خرید با موفقیت انجام شد');
+            return redirect($course->path());
+
             } else {
-                echo 'Transaction failed. Status:' . $result->Status;
+                print_r("not done");
             }
         } else {
             echo 'Transaction canceled by user';
         }
     }
+    protected function addCourseToLearning($payment , $course)
+    {
+        $payment->updated([
+           'payment' => 1
+        ]);
 
+        learning::create([
+           'user_id' => auth()->user()->id,
+           'course_id' => $course->id
+        ]);
+
+        return true;
+    }
 }

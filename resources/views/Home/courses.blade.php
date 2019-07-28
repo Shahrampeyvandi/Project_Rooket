@@ -165,13 +165,25 @@
     </div>
 
     <!-- Blog Sidebar Widgets Column -->
+{{--    check for if user buy this course--}}
+    @if(auth()->user()->checkLearning($course))
     <div class="col-md-4">
         <div class="well">
-            برای استفاده از این دوره نیاز است این دوره را با مبلغ ۱۰۰۰۰ تومان خریداری کنید
-            <a href="#">
-                <button class="btn btn-success">خرید دوره</button>
-            </a>
+         <h4>شما این دوره را خریداری کرده اید</h4>
         </div>
+        @else
+            <div class="col-md-4">
+                <div class="well">
+                    برای استفاده از این دوره نیاز است این دوره را با مبلغ ۱۰۰۰۰ تومان خریداری کنید
+                    <form method="post" action="/course/payment">
+                        @csrf
+                        <input type="hidden" name="course_id" value="{{$course->id}}">
+                        <button type="submit" class="btn btn-xs btn-success">خرید</button>
+
+                    </form>
+                </div>
+
+           @endif
         <!-- Blog Search Well -->
         <div class="well">
             <h4>جستجو در سایت</h4>
