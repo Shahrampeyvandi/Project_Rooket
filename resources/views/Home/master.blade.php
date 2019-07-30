@@ -15,6 +15,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="/css/home.css" rel="stylesheet">
+    <link href="/feed/articles" rel="alternate" title="فید مقالات" type="application/rss+xml">
 </head>
 
 <body>

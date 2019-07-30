@@ -14,11 +14,20 @@
 
 
 Route::get('/' ,'HomeController@index');
-Route::get('Telegram' , 'TelegramController@telegram');
+//Route::get('Telegram' , 'TelegramController@telegram');
 Route::get('articles','ArticleController@index');
 Route::get('courses','CourseController@index');
 Route::get('article/{articleSlug}','ArticleController@single');
 Route::get('courses/{courseSlug}','CourseController@single');
+
+
+// ----------- sitemap routes ------------
+
+Route::get('sitemap' , 'sitemapController@index');
+Route::get('sitemap-articles' , 'sitemapController@articles');
+
+Route::get('feed/articles' , 'feedController@articles');
+
 
 // ---------   comments    -------------
 
