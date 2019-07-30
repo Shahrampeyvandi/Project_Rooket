@@ -14,7 +14,7 @@
 
 
 Route::get('/' ,'HomeController@index');
-
+Route::get('Telegram' , 'TelegramController@telegram');
 Route::get('articles','ArticleController@index');
 Route::get('courses','CourseController@index');
 Route::get('article/{articleSlug}','ArticleController@single');
