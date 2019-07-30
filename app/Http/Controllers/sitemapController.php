@@ -18,10 +18,10 @@ class sitemapController extends Controller
         if (!$sitemap->isCached()){
             // manual item for sitemap add to method :
             //add($url, $date, priority , time);
-            $sitemap->add(url()->to('sitemap-articles'),'2016-01-01T00:00:00+00:00','0.9','daily');
+            $sitemap->addSitemap(url()->to('sitemap-articles'));
         }
 
-        return $sitemap->render();
+        return $sitemap->render('sitemapindex');
     }
 
     public function articles()

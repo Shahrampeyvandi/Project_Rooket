@@ -25,7 +25,7 @@ Route::get('courses/{courseSlug}','CourseController@single');
 
 Route::get('sitemap' , 'sitemapController@index');
 Route::get('sitemap-articles' , 'sitemapController@articles');
-
+// -----------  feed route -----------------
 Route::get('feed/articles' , 'feedController@articles');
 
 
@@ -85,6 +85,14 @@ Route::group(['namespace' => 'Auth'] , function (){
 Route::group(['middleware' => 'auth:web'], function (){
     Route::post('course/payment', 'CourseController@paymant');
     Route::get( 'course/payment/checker' , 'CourseController@checkpayment');
+
+    // --------- user panel -----------
+    Route::group(['prefix' =>'/user/panel'] , function (){
+        Route::get('/' , 'userController@index')->name('user.panel');
+        Route::get('/history' , 'userController@history')->name('user.panel.history');
+        Route::get('/vip' , 'userController@vip')->name('user.panel.vip');
+        Route::post('paymentaccount' , 'userController@payment');
+    });
 
 });
 
