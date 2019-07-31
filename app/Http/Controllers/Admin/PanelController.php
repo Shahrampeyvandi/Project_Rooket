@@ -49,7 +49,7 @@ class PanelController extends Controller
         }
 
         $file->move(public_path($imagePath) , $filename);
-        $url = $imagePath . $filename;
+        $url = "http://127.0.0.1:8000".$imagePath . $filename;
 
         return "<script>window.parent.CKEDITOR.tools.callFunction(1 , '{$url}' , '')</script>";
     }

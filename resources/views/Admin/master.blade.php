@@ -19,5 +19,6 @@
     </div>
 
     @include('Admin.section.footer')
+
 </body>
 </html>

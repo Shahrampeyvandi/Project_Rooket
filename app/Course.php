@@ -33,6 +33,10 @@ class Course extends Model
         $this->attributes['description'] = str_limit(preg_replace('/<[^>]*>/' , '' , $value) , 200);
         $this->attributes['body'] = $value;
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function episodes()
     {
