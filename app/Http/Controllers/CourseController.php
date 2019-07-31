@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Episode;
 use App\learning;
 use App\Payment;
 use Illuminate\Http\Request;
 use App\Course;
+use Illuminate\Support\Facades\Hash;
+
 class CourseController extends Controller
 {
     protected $MerchantID = '00'; //Req
@@ -108,5 +111,19 @@ class CourseController extends Controller
         ]);
 
         return true;
+    }
+
+    // ---- for download episode videos -------
+    public function download(Episode $episode)
+    {
+        // ma mitavanim dar in ghesmat ham auth() ra check konim .
+        $hash= 'DJSKFksd@i$f#&*ocndx' . $episode->id . request()->ip() . request('t');
+        if (Hash::check($hash , request('mac'))){
+            return response()->download(storage_path($episode->videoUrl));
+
+        }else{
+            return "لینک دانلود مشکل دارد";
+        }
+
     }
 }

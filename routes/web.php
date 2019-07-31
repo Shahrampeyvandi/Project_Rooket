@@ -29,6 +29,10 @@ Route::get('sitemap-articles' , 'sitemapController@articles');
 Route::get('feed/articles' , 'feedController@articles');
 
 
+// -------  DownLoad Episode Route ---------
+Route::get('/download/{episode}' , 'CourseController@download');
+
+
 // ---------   comments    -------------
 
 Route::post('comment', 'HomeController@comment');

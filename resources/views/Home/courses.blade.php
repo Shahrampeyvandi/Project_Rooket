@@ -55,45 +55,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>قسمت اول</td>
-                    <td>۱۰:۲۰</td>
-                    <td>
-                        <a href="#"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>قسمت اول</td>
-                    <td>۱۰:۲۰</td>
-                    <td>
-                        <a href="#"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>قسمت اول</td>
-                    <td>۱۰:۲۰</td>
-                    <td>
-                        <a href="#"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></a>
-                    </td>
-                </tr><tr>
-                    <th scope="row">1</th>
-                    <td>قسمت اول</td>
-                    <td>۱۰:۲۰</td>
-                    <td>
-                        <a href="#"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></a>
-                    </td>
-                </tr><tr>
-                    <th scope="row">1</th>
-                    <td>قسمت اول</td>
-                    <td>۱۰:۲۰</td>
-                    <td>
-                        <a href="#"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></a>
-                    </td>
-                </tr>
-
+               @foreach($course->episodes()->latest()->get() as $episode)
+                   <tr>
+                       <th scope="row">{{ $episode->number }}</th>
+                       <td> {{ $episode->title }}</td>
+                       <td>{{ $episode->time }}</td>
+                       <td>
+                           <a href="{{ $episode->download() }}"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></a>
+                       </td>
+                   </tr>
+               @endforeach
 
             </tbody> </table>
         <!-- Blog Comments -->
