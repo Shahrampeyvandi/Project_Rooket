@@ -45,6 +45,18 @@
                 <li>
                     <a href="#">درباره‌ما</a>
                 </li>
+                @if(!auth()->check())
+                    <li>
+                        <a href="/login">ورود</a>
+                    </li>
+                @else
+                    <li>
+                        <a href="/user/panel">حساب کاربری</a>
+                    </li>
+                    <li>
+                        <a href="/logout">خروج</a>
+                    </li>
+                @endif
             </ul>
         </div>
         <!-- /.navbar-collapse -->

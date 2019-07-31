@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Events\UserActivation;
 use App\User;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -71,6 +72,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'api_token' => Str::random(60),
+            'viptime' => Carbon::now(),
         ]);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'active','api_token'
+        'name', 'email', 'password', 'active','api_token','viptime'
     ];
 
     /**
@@ -24,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token','api_token'
+        'password', 'remember_token','api_token','viptime'
     ];
 
     public function article()
@@ -58,5 +59,9 @@ class User extends Authenticatable
     public function checkLearning($course)
     {
         return !! learning::where(['user_id' => $this->id ,'course_id' => $course->id])->first();
+    }
+    public function isActive()
+    {
+        return $this->viptime > Carbon::now() ? true : false;
     }
 }

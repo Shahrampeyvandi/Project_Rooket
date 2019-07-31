@@ -91,7 +91,9 @@ Route::group(['middleware' => 'auth:web'], function (){
         Route::get('/' , 'userController@index')->name('user.panel');
         Route::get('/history' , 'userController@history')->name('user.panel.history');
         Route::get('/vip' , 'userController@vip')->name('user.panel.vip');
+        // ----- hesabe vip karbar ----------
         Route::post('paymentaccount' , 'userController@payment');
+        Route::get('paymentchecker' , 'userController@checker')->name('user.paymentchecker');
     });
 
 });

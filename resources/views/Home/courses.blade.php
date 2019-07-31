@@ -33,8 +33,16 @@
 
         <p dir="rtl">&nbsp;در واقع این قسمت رو میشه یک زیر سیستم به حساب آورد که می تونه گرافیک رو روی صفحه نمایش، نشون بده. اغلب اوقات ما اون رو با اسم X-Server هم می بینیم.</p>
         <hr>
-        <div class="alert alert-danger" role="alert">برای مشاهده تمامی قسمت ها باید این دوره را خریداری کنید</div>
-        <div class="alert alert-danger" role="alert">برای مشاهده تمامی قسمت ها باید عضویت ویژه تهیه کنید</div>
+        @if(auth()->check())
+            @if(!auth()->user()->isActive())
+                <div class="alert alert-danger" role="alert">برای مشاهده تمامی قسمت ها باید عضویت ویژه تهیه کنید</div>
+            @else
+                <div class="alert alert-success" role="alert"> این دوره در دسترس شمامیباشد</div>
+            @endif
+        @else
+            <div class="alert alert-danger" role="alert">برای مشاهده وارد سایت شوید</div>
+
+        @endif
 
         <h3>قسمت های دوره</h3>
         <table class="table table-condensed table-bordered">

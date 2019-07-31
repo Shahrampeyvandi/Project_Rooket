@@ -84,11 +84,11 @@ class CourseController extends Controller
                     'Amount' => $payment->price,
                 ]
             );
-
+          if ($result->Status == 100){
             if ($this->addCourseToLearning($payment , $course)) {
-            alert()->success('خرید با موفقیت انجام شد');
-            return redirect($course->path());
-
+                alert()->success('خرید با موفقیت انجام شد');
+                return redirect($course->path());
+            }
             } else {
                 print_r("not done");
             }
