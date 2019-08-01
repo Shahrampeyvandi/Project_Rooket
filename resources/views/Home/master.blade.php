@@ -14,11 +14,20 @@
     <title> @yield('title' , 'صفحه اصلی')</title>
 
     <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/imagehover.min.css">
+
     <link href="https://vjs.zencdn.net/7.6.0/video-js.css" rel="stylesheet">
     <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+    <link href="/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="/css/owl.theme.default.min.css" rel="stylesheet">
 
+{{--    <link href="/css/app.css" rel="stylesheet">--}}
     <link href="/css/home.css" rel="stylesheet">
     <link href="/feed/articles" rel="alternate" title="فید مقالات" type="application/rss+xml">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
 </head>
 
 <body>
@@ -68,13 +77,13 @@
 </nav>
 
 <!-- Page Content -->
-<div id="app" class="container">
 
-    <div class="row">
+
+
         @yield('content')
-    </div>
 
-</div>
+
+
 <!-- /.container -->
 
 <div class="container">
@@ -94,16 +103,19 @@
 <!-- /.container -->
 
 
-<script src="/js/app.js"></script>
+<script src="{{asset('js/app.js')}}"></script>
+<script src="js/jquery.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 {{--<script src='https://vjs.zencdn.net/7.6.0/video.js'></script>--}}
+<script src="{{asset('js/owl.carousel.min.js')}}"></script>
+<script src="{{asset('js/personal.js')}}"></script>
 
-<script>
-
-
-</script>
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/custom.js"></script>
 </body>
 
 </html>
