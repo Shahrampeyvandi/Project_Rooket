@@ -165,6 +165,7 @@ return [
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         Telegram\Bot\Laravel\TelegramServiceProvider::class,
+        Kavenegar\Laravel\ServiceProvider::class,
 
 
         /*
@@ -233,6 +234,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
         'Telegram'  => Telegram\Bot\Laravel\Facades\Telegram::class,
+        'Kavenegar' => Kavenegar\Laravel\Facade::class,
         // for seo
         'SEOMeta'   => Artesaos\SEOTools\Facades\SEOMeta::class,
         'OpenGraph' => Artesaos\SEOTools\Facades\OpenGraph::class,
