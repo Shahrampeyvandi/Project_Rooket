@@ -58,6 +58,7 @@ public function sendResetLinkPhone(Request $request)
 //                $api = new KavenegarApi("7345753639564B705137654C55547468506264663452413179447A567441726D");
 //                 $api->send('10004346' , $user->phone , route('password.reset' , $token) );
                 Kavenegar::Send('10004346',$user->phone,route('password.reset' , $token));
+//                dd(route('password.reset' , $token));
             }catch(\Kavenegar\Exceptions\ApiException $e){
                 // در صورتی که خروجی وب سرویس 200 نباشد این خطا رخ می دهد
                 echo $e->errorMessage();
