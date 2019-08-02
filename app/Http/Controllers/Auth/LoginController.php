@@ -41,6 +41,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function username()
+    {
+        return 'phone';
+    }
 
     /**
      * Handle a login request to the application.
@@ -62,15 +66,15 @@ class LoginController extends Controller
         }
 
 
-        if(auth()->validate($request->only('email' , 'password'))) {
-            $user = User::whereEmail($request->input('email'))->first();
+        if(auth()->validate($request->only('phone' , 'password'))) {
+            $user = User::wherePhone($request->input('phone'))->first();
             if($user->active == 0 ) {
                 $checkActiveCode = $user->activationCode()->where('expire' , '>=' , Carbon::now() )->latest()->first();
 
                 if($checkActiveCode) {
                     if($checkActiveCode->expire > Carbon::now() ) {
                         $this->incrementLoginAttempts($request);
-                        return back()->withErrors(['code' => 'ایمیل فعال سازی قبلا به ایمیل شما ارسال شد بعد از 15 دقیقه دوباره برای ارسال ایمیل لاگین کنید']);
+                        return back()->withErrors(['code' => 'پیامک تایید به شماره تلفن شما ارسال شده است .لطفا 15 دقیقه دیگر مجددا تلاش نمایید!']);
                     }
                 } else {
                     event(new UserActivation($user));
@@ -132,7 +136,7 @@ class LoginController extends Controller
         $this->validate($request, [
             $this->username() => 'required',
              'password' => 'required',
-             'g-recaptcha-response' => 'recaptcha'
+//             'g-recaptcha-response' => 'recaptcha'
         ]);
     }
 }

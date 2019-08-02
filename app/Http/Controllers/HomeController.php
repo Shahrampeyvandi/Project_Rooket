@@ -18,9 +18,9 @@ class HomeController extends Controller
         //php artisan queue:table
 //        $job = new sendMail(User::find(1) , 'fffaffd');
 //        $this->dispatch($job);
-//        $job->delay(Carbon::now()->addSeconds(10));
-
-
+//        $job->delay(Carbon::now()->addSeconds(20));
+//
+//return 'fd';
 //        $job = (new sendMail(User::find(1) , 'fffaffd'))->onQueue('send.mails');
 // we can fix a name for queue and execute with flag --queue=name
 
