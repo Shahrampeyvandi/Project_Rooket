@@ -29,7 +29,9 @@ class HomeController extends Controller
         //php artiasn queue:failed  => table where queue are failed
         //php artisan queue:retry all or id
 
-
+// make relation
+//        return Article::find(3)->categoreis()->attach(1);
+//        return Article::find(5)->categoreis()->attach(2);
 
 
         SEO::setTitle('Home');

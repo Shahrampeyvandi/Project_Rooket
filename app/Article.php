@@ -44,4 +44,8 @@ class Article extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function categoreis(){
+        return $this->belongsToMany(Category::class);
+    }
+
 }

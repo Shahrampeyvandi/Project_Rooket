@@ -25,6 +25,7 @@
 
 {{--    <link href="/css/app.css" rel="stylesheet">--}}
     <link href="/css/home.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap-rtl.min.css">
     <link href="/feed/articles" rel="alternate" title="فید مقالات" type="application/rss+xml">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 

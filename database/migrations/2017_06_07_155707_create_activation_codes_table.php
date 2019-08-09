@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLearningsTable extends Migration
+class CreateActivationCodesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateLearningsTable extends Migration
      */
     public function up()
     {
-        Schema::create('learnings', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('user_id');
+        Schema::create('activation_codes', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('course_id');
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
 
+            $table->string('code');
+            $table->boolean('used')->default(false);
+            $table->dateTime('expire');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateLearningsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('learnings');
+        Schema::dropIfExists('activation_codes');
     }
 }
