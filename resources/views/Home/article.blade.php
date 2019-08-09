@@ -1,9 +1,39 @@
-@extends('Home.master')
+@extends('layouts.master')
 
 @section('title' , 'دوره های ویژه')
 @section('content')
+
+{{--front-end edit--}}
+
+        <!-- Blog Sidebar Widgets Column -->
+        <div class="col-md-4 text-right">
+
+            <!-- Blog Search Well -->
+            <div class="well">
+                <h4>جستجو در سایت</h4>
+                <div class="input-group">
+                    <form action="/search" method="get">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                        </span>
+                    </form>
+                </div>
+                <!-- /.input-group -->
+            </div>
+
+            <!-- Side Widget Well -->
+            <div class="well">
+                <h4>دیوار</h4>
+                <p>طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد.</p>
+            </div>
+
+        </div>
+
         <!-- Blog Post Content Column -->
-        <div class="col-lg-8">
+        <div class="col-lg-8 text-right">
 
             <!-- Blog Post -->
 
@@ -67,21 +97,21 @@
 
             <!-- Comments Form -->
             @if(auth()->check())
-            <div class="well parent-form">
-               @include('Home.errors')
-                <h4>ثبت نظر :</h4>
-                <form id="myform" role="form" action="/comment" method="post">
-                    @csrf
-                    <div class="form-group">
-                        <input type="hidden" name="parent_id" value="0">
-                        <input type="hidden" name="commentable_id" value="{{$article->id}}">
-                        <input type="hidden" name="commentable_type" value="{{get_class($article)}}">
+                <div class="well parent-form">
+                    @include('Home.errors')
+                    <h4>ثبت نظر :</h4>
+                    <form id="myform" role="form" action="/comment" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <input type="hidden" name="parent_id" value="0">
+                            <input type="hidden" name="commentable_id" value="{{$article->id}}">
+                            <input type="hidden" name="commentable_type" value="{{get_class($article)}}">
 
-                        <textarea class="textarea form-control" rows="3" name="comment"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">ارسال</button>
-                </form>
-            </div>
+                            <textarea class="textarea form-control" rows="3" name="comment"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">ارسال</button>
+                    </form>
+                </div>
 
             @else
                 <div class="alert alert-danger">
@@ -93,7 +123,7 @@
             <!-- Posted Comments -->
 
             <!-- Comment -->
-           @forelse($comments as $comment)
+            @forelse($comments as $comment)
                 <div class="media">
                     <a class="pull-right" href="#">
                         <img class="media-object" src="http://placehold.it/64x64" alt="">
@@ -115,19 +145,19 @@
                             @foreach($comment->comments as $childComment)
 
                                 <div class="media">
-                                                            <a class="pull-right" href="#">
-                                                                <img class="media-object" src="http://placehold.it/64x64" alt="">
-                                                            </a>
-                                                            <div class="media-body">
-                                                                <h4 class="media-heading"> {{$childComment->user->name}}
-                                                                    <small>  {{jdate($childComment->created_at)->ago()}}</small>
-                                                                </h4>
-                                                                {{$childComment->comment}}
-                                                            </div>
+                                    <a class="pull-right" href="#">
+                                        <img class="media-object" src="http://placehold.it/64x64" alt="">
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"> {{$childComment->user->name}}
+                                            <small>  {{jdate($childComment->created_at)->ago()}}</small>
+                                        </h4>
+                                        {{$childComment->comment}}
+                                    </div>
                                 </div>
 
 
-                                @endforeach
+                            @endforeach
 
 
 
@@ -135,64 +165,37 @@
                     </div>
                 </div>
             @empty
-               <div class="alert alert-info">
-                   <p>نظری برای این پست وجود ندارد</p>
-               </div>
+                <div class="alert alert-info">
+                    <p>نظری برای این پست وجود ندارد</p>
+                </div>
             @endforelse
 
-            <!-- Comment -->
-{{--            <div class="media">--}}
-{{--                <a class="pull-right" href="#">--}}
-{{--                    <img class="media-object" src="http://placehold.it/64x64" alt="">--}}
-{{--                </a>--}}
-{{--                <div class="media-body">--}}
-{{--                    <h4 class="media-heading">حسام موسوی--}}
-{{--                        <small>۱۰ روز قبل</small>--}}
-{{--                        <button class="pull-left btn btn-xs btn-success" data-toggle="modal" data-target="#sendCommentModal" data-parent="21">پاسخ</button>--}}
-{{--                    </h4>--}}
-{{--                    معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند که صفحه طراحی یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته شده‌است.--}}
-{{--                    <!-- Nested Comment -->--}}
-{{--                    <div class="media">--}}
-{{--                        <a class="pull-right" href="#">--}}
-{{--                            <img class="media-object" src="http://placehold.it/64x64" alt="">--}}
-{{--                        </a>--}}
-{{--                        <div class="media-body">--}}
-{{--                            <h4 class="media-heading">حسام موسوی--}}
-{{--                                <small>۱۰ روز قبل</small>--}}
-{{--                            </h4>--}}
-{{--                            معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند که صفحه طراحی یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته شده‌است.--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <!-- End Nested Comment -->--}}
-{{--                </div>--}}
-{{--            </div>--}}
+        <!-- Comment -->
+            {{--            <div class="media">--}}
+            {{--                <a class="pull-right" href="#">--}}
+            {{--                    <img class="media-object" src="http://placehold.it/64x64" alt="">--}}
+            {{--                </a>--}}
+            {{--                <div class="media-body">--}}
+            {{--                    <h4 class="media-heading">حسام موسوی--}}
+            {{--                        <small>۱۰ روز قبل</small>--}}
+            {{--                        <button class="pull-left btn btn-xs btn-success" data-toggle="modal" data-target="#sendCommentModal" data-parent="21">پاسخ</button>--}}
+            {{--                    </h4>--}}
+            {{--                    معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند که صفحه طراحی یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته شده‌است.--}}
+            {{--                    <!-- Nested Comment -->--}}
+            {{--                    <div class="media">--}}
+            {{--                        <a class="pull-right" href="#">--}}
+            {{--                            <img class="media-object" src="http://placehold.it/64x64" alt="">--}}
+            {{--                        </a>--}}
+            {{--                        <div class="media-body">--}}
+            {{--                            <h4 class="media-heading">حسام موسوی--}}
+            {{--                                <small>۱۰ روز قبل</small>--}}
+            {{--                            </h4>--}}
+            {{--                            معمولا طراحان گرافیک برای صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب کار خود نشان دهند که صفحه طراحی یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه به نظر می‌رسد و قلم‌ها و اندازه‌بندی‌ها چگونه در نظر گرفته شده‌است.--}}
+            {{--                        </div>--}}
+            {{--                    </div>--}}
+            {{--                    <!-- End Nested Comment -->--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
 
         </div>
-
-        <!-- Blog Sidebar Widgets Column -->
-        <div class="col-md-4">
-
-            <!-- Blog Search Well -->
-            <div class="well">
-                <h4>جستجو در سایت</h4>
-                <div class="input-group">
-                    <input type="text" class="form-control">
-                    <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                        </span>
-                </div>
-                <!-- /.input-group -->
-            </div>
-
-            <!-- Side Widget Well -->
-            <div class="well">
-                <h4>دیوار</h4>
-                <p>طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه اولیه شکل ظاهری و کلی طرح سفارش گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن باشد.</p>
-            </div>
-
-        </div>
-
-
 @endsection

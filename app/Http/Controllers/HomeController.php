@@ -55,6 +55,14 @@ class HomeController extends Controller
         return view('Home.index' , compact(['articles','courses']));
     }
 
+    public function search()
+    {
+        $keyword =\request('search');
+        $articles= Article::search($keyword)->latest()->get();
+        return $articles;
+        //return to view
+    }
+
     public function comment(Request $request)
     {
 

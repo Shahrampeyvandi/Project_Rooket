@@ -19,6 +19,7 @@ Route::get('articles','ArticleController@index');
 Route::get('courses','CourseController@index');
 Route::get('article/{articleSlug}','ArticleController@single');
 Route::get('courses/{courseSlug}','CourseController@single');
+Route::get('/search' , 'HomeController@search');
 
 
 // ----------- sitemap routes ------------

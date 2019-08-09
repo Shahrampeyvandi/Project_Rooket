@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66e5a6bb-b082-4ef8-ac1a-2e27b95fd7a5" name="Default Changelist" comment="s">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2017_07_22_142631_create_categories_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Article.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_28_062917_create_learnings_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_01_071801_create_jobs_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Home/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Home/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Home/article.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Home/article.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -257,7 +254,7 @@
       <workItem from="1565317305528" duration="856000" />
       <workItem from="1565318206245" duration="1084000" />
       <workItem from="1565320549817" duration="316000" />
-      <workItem from="1565327399986" duration="6527000" />
+      <workItem from="1565327399986" duration="10477000" />
     </task>
     <task id="LOCAL-00001" summary="s">
       <created>1564463052077</created>
