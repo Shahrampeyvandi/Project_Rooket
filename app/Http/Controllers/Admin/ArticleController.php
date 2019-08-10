@@ -41,8 +41,18 @@ class ArticleController extends AdminController
     {
         $imagesUrl = $this->uploadImages($request->file('images'));
 
-        auth()->user()->article()->create(array_merge($request->all() , [ 'images' => $imagesUrl]));
+       Article::create([
+           'user_id' => auth()->user()->id,
+          'title' =>$request->title,
+          'description' =>$request->description,
+          'body' =>$request->body,
+          'images' =>$imagesUrl,
+            'tags' => $request->tags,
+       ]);
+        $article=Article::whereTitle($request->title)->first();
+//        Article::find(7)->categoreis()->attach(1);
 
+            $article->categoreis()->attach($request->category);
         return redirect(route('articles.index'));
     }
 

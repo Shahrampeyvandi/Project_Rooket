@@ -47,6 +47,15 @@
                 </div>
             </div>
             <div class="form-group">
+                <div class="col-sm-6">
+                    <select name="category" id="category">
+                        @foreach(\App\Category::all() as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-sm-12">
                     <button type="submit" class="btn btn-danger">ارسال</button>
                 </div>

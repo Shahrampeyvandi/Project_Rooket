@@ -136,7 +136,7 @@ return array(
         "videoUrl" => "آدرس ویدیو",
         "slug" => "نامک",
         "tags" => "تگ ها",
-        "category" => "دسته",
+        "categories" => "دسته",
         "story" => "داستان",
         'number' => 'شماره قسمت',
         'price' => 'قیمت دوره',

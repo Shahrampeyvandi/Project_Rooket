@@ -12,14 +12,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">ایساکو </a>
+                <a class="navbar-brand" href="#">Logo </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">صفحه اصلی</a></li>
-                    <li><a href="#about">درباره ما</a></li>
+                    <li><a href="/courses"> محصولات</a></li>
                     <li><a href="#contact">تماس با ما</a></li>
-                    <li class="dropdown">
+                    @auth
+                        <li><a href="{{ route('user.panel') }}">حساب کاربری</a></li>
+
+                        <li><a href="{{ route('logout') }}">خروج</a></li>
+                    @else
+                        <li><a href="{{ route('login') }}">ورود</a></li>
+
+                    @endauth
+
+                        <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">بخش ها <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">دوره ها</a></li>
@@ -64,7 +73,7 @@
         </div>
     </div>
     <div class="row ">
-        @foreach ($courses as $course)
+        @forelse($courses as $course)
 {{--            <div class="col-md-3 col-sm-6 hero-feature" style="height: 400px">--}}
 {{--                <div class="thumbnail">--}}
 {{--                    <img class=" img-fluid" style="height: 200px" src="{{asset($course->images['images']['300'])}}" alt="">--}}
@@ -83,9 +92,9 @@
 
            <div class="col-md-4 col-sm-6 hero-feature " >
             <div class="card " style="width: 30rem;margin-bottom: 20px">
-                <img  class="card-img-top"  src="{{asset($course->images['images']['300'])}}" alt="Card image cap">
+                <img style="height: 300px"  class="card-img-top img-responsive"  src="{{asset($course->images['images']['300'])}}" alt="Card image cap">
                 <div class="card-body" >
-                    <h5 class="card-title"><a href="{{$course->path()}}"> {{$course->title}}</a></h5>
+                    <h4 class="card-title"><a href="{{$course->path()}}"> {{$course->title}}</a></h4>
                     <p class="card-text" style="">{{str_limit($course->description,120)}}</p>
                     <div class="btn btn-group-xs" style="width: 100%">
                         <p href="#" class="btn btn-info" style="margin-left: 40px">تعداد بازدید:{{$course->viewCount}}</p>
@@ -95,7 +104,11 @@
                 </div>
             </div>
            </div>
-        @endforeach
+        @empty
+            <div class="alert alert-info">
+                موردی برای نمایش وجود ندارد
+            </div>
+        @endforelse
 </div>
 
 
@@ -104,7 +117,7 @@
             <div class="col-sm-12">
                 <h3 class="paddingbottom">مقالات</h3>
             </div>
-           @foreach ($articles as $article)
+           @forelse ($articles as $article)
            <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail">
                     <img src="{{asset($article->images['images']['300'])}}" alt="">
@@ -118,7 +131,11 @@
                     </div>
                 </div>
             </div>
-           @endforeach
+           @empty
+            <div class="alert alert-info">
+                موردی وجود ندارد
+            </div>
+           @endforelse
 
         </div>
     </div>

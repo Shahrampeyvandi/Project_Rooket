@@ -11,7 +11,10 @@
 }
 
 
-
+body{
+    font-family: Mitra;
+    font-size: 17px;
+}
 
 ol, ul {
 	list-style: none;
@@ -32,9 +35,13 @@ table {
 	padding: 60px 0px;
 }
 h1, h2, h3, h4, h5, h6{
-    font-family: Open Sans, sans-serif;
+    font-family: inherit;
     font-weight: 700;
     color: #4B4B4C;
+}
+p{
+    font-family: Mitra;
+    font-size: 17px;
 }
 a{
     color: #5fcf80;
@@ -800,4 +807,9 @@ Responsive media queries
 }
 .hero-feature img:hover{
     transform: scale(1.015);
+}
+
+/*overwrite bootstrap*/
+.btn-group-xs>.btn{
+    font-size: 15px;
 }

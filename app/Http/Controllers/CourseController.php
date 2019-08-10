@@ -13,6 +13,14 @@ class CourseController extends Controller
 {
     protected $MerchantID = '00'; //Req
 
+    public function index()
+    {
+//        dd(\request()->all()) ;
+        $courses= Course::filter()->paginate(6);
+//        $courses = Course::all();
+        return view('Home.all-courses' , compact('courses'));
+    }
+
     public function single(Course $course)
     {
 

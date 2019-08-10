@@ -21,14 +21,28 @@ class CreateCategoriesTable extends Migration
         });
 
         Schema::create('article_category', function (Blueprint $table) {
-            $table->integer('article_id')->unsigned();
+            $table->integer('article_id')->unsigned()->default(0);
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
 
-            $table->integer('category_id')->unsigned();
+            $table->integer('category_id')->unsigned()->default(0);
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
-            $table->primary('article_id');
+
+
+            $table->primary(['article_id' , 'category_id']);
         });
+
+              Schema::create('category_course', function (Blueprint $table) {
+                  $table->integer('course_id')->unsigned()->default(0);
+                  $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+
+                  $table->integer('category_id')->unsigned()->default(0);
+                  $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+
+
+
+                  $table->primary(['course_id' , 'category_id']);
+              });
 
     }
 
@@ -40,7 +54,9 @@ class CreateCategoriesTable extends Migration
     public function down()
     {
         //اول باید جدول رابط حذف شود
+
         Schema::dropIfExists('article_category');
+        Schema::dropIfExists('category_course');
         Schema::dropIfExists('categories');
     }
 }

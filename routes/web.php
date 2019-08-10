@@ -16,7 +16,11 @@
 Route::get('/' ,'HomeController@index');
 //Route::get('Telegram' , 'TelegramController@telegram');
 Route::get('articles','ArticleController@index');
+
+// filter for courses
 Route::get('courses','CourseController@index');
+//end filter for courses
+
 Route::get('article/{articleSlug}','ArticleController@single');
 Route::get('courses/{courseSlug}','CourseController@single');
 Route::get('/search' , 'HomeController@search');
@@ -93,9 +97,9 @@ Route::group(['middleware' => 'auth:web'], function (){
 
     // --------- user panel -----------
     Route::group(['prefix' =>'/user/panel'] , function (){
-        Route::get('/' , 'userController@index')->name('user.panel');
-        Route::get('/history' , 'userController@history')->name('user.panel.history');
-        Route::get('/vip' , 'userController@vip')->name('user.panel.vip');
+        Route::get('/' , 'UserController@index')->name('user.panel');
+        Route::get('/history' , 'UserController@history')->name('user.panel.history');
+        Route::get('/vip' , 'UserController@vip')->name('user.panel.vip');
         // ----- hesabe vip karbar ----------
         Route::post('paymentaccount' , 'userController@payment');
         Route::get('paymentchecker' , 'userController@checker')->name('user.paymentchecker');
