@@ -57,6 +57,14 @@ Route::group(['namespace' => 'Admin' , 'prefix' => 'admin','middleware' =>['admi
     Route::resource('permissions' , 'PermissionController');
     Route::resource('comments' , 'CommentController');
     Route::get('unpublishedComments', 'CommentController@unPublishedComment');
+    //menu
+    Route::get('menu' ,'menuController@index')->name('menus.index');
+    Route::get('menu/create' ,'menuController@create')->name('menus.create');
+    Route::post('menu' ,'menuController@store')->name('menus.store');
+    Route::get('menu/{menu}/edit' ,'menuController@edit')->name('menus.edit');
+    Route::put('menu' ,'menuController@update')->name('menus.update');
+    Route::delete('menu/{menu}' ,'menuController@destroy')->name('menus.destroy');
+
 
     // ---------- payment management -------------
     Route::get('unsuccessful' , 'paymentController@unSuccessfull');

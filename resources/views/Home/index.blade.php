@@ -16,9 +16,11 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">صفحه اصلی</a></li>
-                    <li><a href="/courses"> محصولات</a></li>
-                    <li><a href="#contact">تماس با ما</a></li>
+                   @if(count($menus))
+                       @foreach($menus as $menu)
+                            <li><a href="{{ $menu->url }}">{{ $menu->title }}</a></li>
+                        @endforeach
+                   @endif
                     @auth
                         <li><a href="{{ route('user.panel') }}">حساب کاربری</a></li>
 
@@ -94,7 +96,7 @@
             <div class="card " style="width: 30rem;margin-bottom: 20px">
                 <img style="height: 300px"  class="card-img-top img-responsive"  src="{{asset($course->images['images']['300'])}}" alt="Card image cap">
                 <div class="card-body" >
-                    <h4 class="card-title"><a href="{{$course->path()}}"> {{$course->title}}</a></h4>
+                    <h5 class="card-title"><a href="{{$course->path()}}"> {{$course->title}}</a></h5>
                     <p class="card-text" style="">{{str_limit($course->description,120)}}</p>
                     <div class="btn btn-group-xs" style="width: 100%">
                         <p href="#" class="btn btn-info" style="margin-left: 40px">تعداد بازدید:{{$course->viewCount}}</p>

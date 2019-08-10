@@ -32,6 +32,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="/admin/panel">پنل اصلی</a></li>
+                <li><a href="/admin/menu">مدیریت منو</a></li>
                 <li><a href="/admin/articles">مقاله ها</a></li>
                 <li><a href="/admin/courses">دوره ها</a></li>
             </ul>

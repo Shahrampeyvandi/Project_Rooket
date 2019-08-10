@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Jobs\sendMail;
+use App\menu;
 use App\User;
 use Illuminate\Http\Request;
 use App\Article;
@@ -52,7 +53,9 @@ class HomeController extends Controller
 
         }
 
-        return view('Home.index' , compact(['articles','courses']));
+        $menus=menu::orderBy('position' , 'ASC')->get();
+
+        return view('Home.index' , compact(['articles','courses','menus']));
     }
 
     public function search()
