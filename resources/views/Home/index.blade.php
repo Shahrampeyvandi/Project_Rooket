@@ -71,7 +71,7 @@
 
         <div class="col-lg-12">
 
-            <h3 class="paddingbottom">آخرین دوره ها</h3>
+            <h3 class="paddingbottom head">آخرین دوره ها</h3>
         </div>
     </div>
     <div class="row ">
@@ -117,7 +117,7 @@
     <div class="col-md-12">
         <div class="row">
             <div class="col-sm-12">
-                <h3 class="paddingbottom">مقالات</h3>
+                <h3 class="paddingbottom head">مقالات</h3>
             </div>
            @forelse ($articles as $article)
            <div class="col-sm-4 col-lg-4 col-md-4">
@@ -141,5 +141,6 @@
 
         </div>
     </div>
+
 </div>
 @endsection

@@ -4,6 +4,7 @@
     Author: BootstrapMade.com
     Author URL: https://bootstrapmade.com
 */
+
 @font-face {
     font-family:'Mitra' ;
 
@@ -813,3 +814,241 @@ Responsive media queries
 .btn-group-xs>.btn{
     font-size: 15px;
 }
+
+
+/*------ footer -----*/
+p{
+    color: #999;
+    line-height: 25px;
+}
+
+h2,h3{
+    color: #fff;
+}
+h2{
+    font-size: 18px;
+}
+.footer-top{
+    background: #111;
+    padding-top: 80px;
+
+}
+.segment-one h3{
+    font-family: Mitra;
+    color: #fff;
+    margin: 10px 0;
+}
+.segment-two h2{
+    color: #fff;
+
+}
+.segment-two h2:before{
+    content: '|';
+    color: #6ce28d;
+    padding-left: 10px;
+
+}
+.segment-two ul{
+    margin: 0;
+    padding:0;
+    list-style: none;
+
+}
+.segment-two ul li{
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    line-height: 40px;
+
+}
+
+.segment-two ul li a{
+   color: #fff;
+    text-decoration: none;
+}
+.segment-three h2{
+    color: #fff;
+}
+
+.segment-three h2:before{
+    content: '|';
+    color: #6ce28d;
+    padding-left: 10px;
+
+}
+
+.segment-three a{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 50%;
+}
+.instagram{
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+i.fa-facebook{
+    padding: 11px 13px !important;
+}
+.twitter{
+    background: #0084b4;
+}
+i.fa-telegram{
+    padding: 10px 10px;
+}
+.segment-three a i{
+    font-size: 20px;
+    color: #fff;
+    padding: 11px 11px;
+
+}
+
+.segment-four h2{
+    color: #fff;
+    border-bottom: 1px solid #6ce28d ;
+}
+.segment-four input[type=submit]{
+    background: #6ce28d;
+    border: none;
+    padding: 3px 15px;
+    margin-right: -5px;
+    color: #fff;
+
+}
+
+.footer-bottom-text{
+    margin-top: 10px;
+    padding: 10px 0;
+    text-align:center;
+    background:#000;
+}
+
+.head{
+    background: #3c5018;
+    background: linear-gradient(to bottom, rgba(98,125,77,1) 0%, rgba(4,15,8,1) 100%);
+    padding-top: 12px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 28px;
+}
+
+/*nav tabs*/
+.nav-right{
+    direction: rtl;
+}
+
+
+.right-tab{
+    direction: rtl;
+    text-align: right;
+}
+
+
+.table.table-striped {
+    direction: rtl;
+    text-align: right;
+}
+
+.right{float:right}
+.padding5{padding: 5px}
+.news_box{
+    margin-right: 7px;
+    padding:10px;
+    background:#FFF;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    box-shadow:1px 2px 3px rgba(0,0,0,0.12);
+    border:1px solid #fff;padding-bottom: 35px;overflow:hidden;
+}
+.news_box ul
+{
+    width:100%;
+}
+.news_box ul li ,.news_box2 ul li
+{
+    display:block;width:100%;
+    float:right;background:url(../images/tik.gif) no-repeat right top;
+    padding:0 15px 0 0;margin:5px 0;font-size:12px;overflow:hidden;
+    height:20px;cursor:pointer;
+}
+
+.box_head , .box_head2
+{
+    width:110%;padding:10px;
+    background:#fff url(../images/bg3.gif);
+    margin:-10px -11px 10px 0;
+    border-bottom:2px solid #f1b809;
+    border-radius:10px 10px 0 0;-moz-border-radius:10px 10px 0 0
+}
+.box_head a ,.box_head2 a
+{
+    font-weight:bold;
+    color:#444;
+    padding:0 30px 0 0;
+    display:block;
+    background:url(../images/news.png) right no-repeat
+}
+
+.news_source{
+    margin: 0 10px 0 0;
+    width:auto;
+    font-size:10px;
+    color:#bbb;
+    float: left;
+}
+.news_box a{
+    color: #005a1b;
+}
+
+.newsImage{
+    position:relative;
+    float: right;
+    left: 0px;
+    top: 0px;
+    width: 100px;
+    overflow: hidden;
+    margin: 0 0 0 10px;
+}
+
+.margin-top{
+    margin-top: 15px;
+}
+
+/*  slick slider   */
+
+.productslider-block{
+    margin: 25px;
+    border: 0px solid #000000;
+    border-radius: 8px 8px 8px 8px;
+    background: #ECEEF2;
+}
+.product-content{
+    margin-right: 25px;
+    margin-left: 25px;
+}
+.card{
+    margin: 0 auto;
+    float: none;
+    height: auto;
+    width: auto;
+}
+
+#myCarousel{
+    width: 300px;
+}
+#myCarousel img{
+    height: 300px;
+
+}
+
+@media (min-width: 768px){
+    #myCarousel{
+        margin-right: 160px;
+    }
+}
+
+
+
+
+
+
+
+

@@ -12,8 +12,11 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <!-- Styles -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+{{--    <link href="{{ asset('css/bootstrap-rtl.min.css') }}" rel="stylesheet">--}}
+{{--    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">--}}
 
 </head>
 <body>
@@ -29,7 +32,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        صفحه اصلی
                     </a>
                 </div>
 
@@ -71,8 +74,9 @@
             </div>
         </nav>
 
-        @yield('content')
     </div>
+
+    @yield('content')
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

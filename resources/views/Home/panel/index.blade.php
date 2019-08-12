@@ -1,5 +1,5 @@
 @component('Home.panel.master')
-    <ul style="margin: 20px">
+    <ul style="margin: 20px" class="right-tab">
         <li>   نام کاربری :{{auth()->user()->name}}</li>
         <li>ایمیل : {{auth()->user()->email}}</li>
         @if(auth()->user()->isActive())

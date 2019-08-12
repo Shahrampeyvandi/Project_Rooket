@@ -1,22 +1,17 @@
-@extends('Home.master')
+@extends('layouts.master')
 
 
 @section('content')
     <!-- Blog Post Content Column -->
     <div class="col-lg-8">
-
         <!-- Blog Post -->
-
         <!-- Title -->
-        <h1>  {{ $course->title }}</h1>
-
+        <h4>  {{ $course->title }}</h4>
         <!-- Author -->
         <p class="lead small">
              <a href="#">{{ $course->user->name }} </a>
         </p>
-
         <hr>
-
         <!-- Date/Time -->
         <p><span class="glyphicon glyphicon-time"></span> ارسال شده در ۱۲ خرداد ۹۶</p>
 
@@ -25,7 +20,9 @@
         <!-- Post Content -->
        <div class="content">
            {!! $course->body !!}
+           <img src="{{$course->images['images']['300']}}" alt="{{$course->title}}">
        </div>
+
         <hr>
         @if(auth()->check())
             @if($course->type == 'vip')
@@ -51,39 +48,41 @@
             <div class="alert alert-danger" role="alert">برای مشاهده وارد سایت شوید</div>
 
         @endif
-        <video id='my-video' class='video-js' controls preload='auto' width='640' height='264'
-               poster='MY_VIDEO_POSTER.jpg' data-setup='{}'>
-            <source src='{{ \App\Episode::findOrFail(1)->download() }}' type='video/mp4'>
-{{--            <source src='{{ \App\Episode::findOrFail(1)->download() }}' type='video/webm'>--}}
+     @if(count($course->episodes))
+            <video id='my-video' class='video-js' controls preload='auto' width='640' height='264'
+                   poster='MY_VIDEO_POSTER.jpg' data-setup='{}'>
+                <source src='{{ \App\Episode::findOrFail(1)->download() }}' type='video/mp4'>
+                {{--            <source src='{{ \App\Episode::findOrFail(1)->download() }}' type='video/webm'>--}}
 
-            <p class='vjs-no-js'>
-                To view this video please enable JavaScript, and consider upgrading to a web browser that
-                <a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
-            </p>
-        </video>
-        <h3>قسمت های دوره</h3>
-        <table class="table table-condensed table-bordered">
-            <thead>
+                <p class='vjs-no-js'>
+                    To view this video please enable JavaScript, and consider upgrading to a web browser that
+                    <a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
+                </p>
+            </video>
+            <h3>قسمت های دوره</h3>
+            <table class="table table-condensed table-bordered">
+                <thead>
                 <tr>
                     <th>شماره قسمت</th>
                     <th>عنوان قسمت</th>
                     <th>زمان قسمت</th>
                     <th>دانلود</th>
                 </tr>
-            </thead>
-            <tbody>
-               @foreach($course->episodes()->latest()->get() as $episode)
-                   <tr>
-                       <th scope="row">{{ $episode->number }}</th>
-                       <td> {{ $episode->title }}</td>
-                       <td>{{ $episode->time }}</td>
-                       <td>
-                           <a href="{{ $episode->download() }}"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></a>
-                       </td>
-                   </tr>
-               @endforeach
+                </thead>
+                <tbody>
+                @foreach($course->episodes()->latest()->get() as $episode)
+                    <tr>
+                        <th scope="row">{{ $episode->number }}</th>
+                        <td> {{ $episode->title }}</td>
+                        <td>{{ $episode->time }}</td>
+                        <td>
+                            <a href="{{ $episode->download() }}"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></a>
+                        </td>
+                    </tr>
+                @endforeach
 
-            </tbody> </table>
+                </tbody> </table>
+     @endif
         <!-- Blog Comments -->
 
         <!-- Comments Form -->

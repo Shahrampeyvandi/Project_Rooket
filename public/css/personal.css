@@ -1,0 +1,12 @@
+body{
+    direction: rtl;
+    text-align: right;
+}
+@media (min-width: 768px){
+    .navbar-nav {
+        float: right;
+    }
+    .navbar-nav>li {
+        float: right;
+    }
+}
