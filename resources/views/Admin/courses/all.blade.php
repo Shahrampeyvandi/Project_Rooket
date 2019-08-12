@@ -1,6 +1,15 @@
 @extends('Admin.master')
 
 @section('content')
+
+
+    @if(session()->has('flash_message'))
+        <div class="alert alert-{{session('flash_message_level')}} text-center">
+            {{session('flash_message')}}
+        </div>
+    @endif
+
+
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <div class="page-header head-section">
             <h2>دوره ها</h2>

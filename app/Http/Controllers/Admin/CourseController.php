@@ -42,6 +42,8 @@ class CourseController extends AdminController
         $imagesUrl = $this->uploadImages($request->file('images'));
         auth()->user()->course()->create(array_merge($request->all() , [ 'images' => $imagesUrl]));
 
+        flash('با موفقیت انجام شد' , 'success');
+
         return redirect(route('courses.index'));
     }
 
@@ -89,7 +91,7 @@ class CourseController extends AdminController
 
         unset($inputs['imagesThumb']);
         $course->update($inputs);
-
+        flash('با موفقیت انجام شد' , 'success');
         return redirect(route('articles.index'));
     }
 
@@ -102,6 +104,7 @@ class CourseController extends AdminController
     public function destroy(Course $course)
     {
         $course->delete();
+        flash('با موفقیت انجام شد' , 'success');
         return redirect(route('courses.index'));
     }
 }
