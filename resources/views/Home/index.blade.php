@@ -98,9 +98,9 @@
                 <div class="card-body" >
                     <h5 class="card-title"><a href="{{$course->path()}}"> {{$course->title}}</a></h5>
                     <p class="card-text" style="">{{str_limit($course->description,120)}}</p>
-                    <div class="btn btn-group-xs" style="width: 100%">
+                    <div class="btn btn-group-xs quote" style="width: 100%">
                         <p href="#" class="btn btn-info" style="margin-left: 40px">تعداد بازدید:{{$course->viewCount}}</p>
-                        <a href="{{$course->path()}}" class="btn btn-primary">ادامه مطلب</a>
+                        <a href="{{$course->path()}}" class="btn get-quote">ادامه مطلب</a>
 
                     </div>
                 </div>
@@ -119,6 +119,8 @@
             <div class="col-sm-12">
                 <h3 class="paddingbottom head">مقالات</h3>
             </div>
+        </div>
+        <div class="row">
            @forelse ($articles as $article)
            <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail">
@@ -138,7 +140,7 @@
                 موردی وجود ندارد
             </div>
            @endforelse
-
+        </div>
         </div>
     </div>
 

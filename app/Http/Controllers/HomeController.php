@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Jobs\sendMail;
 use App\menu;
+use App\Notifications\newUser;
 use App\User;
 use Illuminate\Http\Request;
 use App\Article;
@@ -66,7 +67,7 @@ class HomeController extends Controller
         //return to view
     }
 
-    public function comment(Request $request)
+    public function comment(Request $request , Comment $comment)
     {
 
             $request->validate([
@@ -75,6 +76,7 @@ class HomeController extends Controller
             ]);
 
          auth()->user()->comments()->create($request->all());
+         auth()->user()->notify(new newUser( auth()->user()->comments()->first()));
          return back()->with('sendComment','پیام شما ارسال شد');
 
     }

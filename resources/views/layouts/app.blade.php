@@ -31,8 +31,8 @@
                       </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        صفحه اصلی
+                    <a class="navbar-brand" href="">
+                        @yield('title' , 'صفحه اصلی')
                     </a>
                 </div>
 

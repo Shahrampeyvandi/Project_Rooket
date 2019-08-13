@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Events\UserActivation;
+use App\Notifications\newUser;
 use App\User;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -56,7 +57,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'phone' => 'required|digits:11|unique:users' ,
             'password' => 'required|string|min:6|confirmed',
-            
+
         ]);
     }
 
@@ -92,6 +93,7 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
         event(new UserActivation($user));
+
     alert()->success('متن','ایمیل حاوی لینک تایید حساب شما ارسال شد')->autoclose(3500);
 return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
